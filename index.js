@@ -1,6 +1,4 @@
-xhr = new XMLHttpRequest();
-
-async function oauth() {
+function oauth() {
   const res = await axios.get('https://suzuri.jp/oauth/authorize', {
 		client_id: '5h4E1jWnJDWgPBnxwgR_m_R-2UxiRlNl7yARrbhHlMk', 
 		scope: 'read', 
