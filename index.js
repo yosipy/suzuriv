@@ -1,4 +1,4 @@
-import 'request'
+const request = new Request();
 
 async function oauth() {
 	
