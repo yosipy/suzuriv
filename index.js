@@ -3,6 +3,17 @@ import * as THREE from 'https://unpkg.com/three@0.119.1/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.119.1/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
 
+// button
+document.getElementById("image1").onclick = () => {
+  alert("クリックされました")
+}
+document.getElementById("image2").onclick = () => {
+  alert("クリックされました")
+}
+document.getElementById("image3").onclick = () => {
+  alert("クリックされました")
+}
+
 
 function modelLoad(url) {
 	var loader = new GLTFLoader()
