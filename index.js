@@ -121,7 +121,7 @@ async function synthesis(scene, texture_name = '1591475524-2520x2992.png', loade
 window.addEventListener('DOMContentLoaded', init)
 function init() {
 	const canvas_width = window.innerWidth - 300
-	const canvas_height = window.innerHeight
+	const canvas_height = window.innerHeight - 100
 	const scene = new THREE.Scene()
 	const camera = new THREE.PerspectiveCamera( 45, canvas_width / canvas_height, 0.1, 1000 )
 	camera.rotation.set(-Math.PI / 4, Math.PI, 0)

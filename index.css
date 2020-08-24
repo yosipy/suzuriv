@@ -5,8 +5,9 @@
 }
 
 #image1, #image2, #image3 {
-  width: 200px;
+  width: 180px;
   margin: 30px 5px 0;
+  border: medium solid #727272;
 }
 
 canvas {
