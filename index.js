@@ -25,9 +25,9 @@ function modelLoad(url) {
 			// called while loading is progressing
 			function ( xhr ) {
 
-				const download_per = parseInt( xhr.loaded / xhr.total * 100 ) + '% loaded'
+				// const download_per = parseInt( xhr.loaded / xhr.total * 100 ) + '% loaded'
+				const download_per = parseInt( xhr.loaded / 12108120 * 100 ) + '% loaded'
 				document.getElementById('result').innerHTML = String( download_per )
-				console.log( download_per )
 	
 			},
 			// called when loading has errors
