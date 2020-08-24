@@ -6,7 +6,7 @@ import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/contro
 
 function modelLoad(url) {
 	const loader = new GLTFLoader()
-
+	THREE.Cache.enabled = true
 	// Optional: Provide a DRACOLoader instance to decode compressed mesh data
 	//var dracoLoader = new DRACOLoader();
 	//dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
