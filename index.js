@@ -125,13 +125,15 @@ async function synthesis(scene) {
 
 window.addEventListener('DOMContentLoaded', init)
 function init() {
+	let canvas_width = window.innerWidth - 300
+	let canvas_height = window.innerHeight
 	var scene = new THREE.Scene()
-	var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 )
+	var camera = new THREE.PerspectiveCamera( 45, canvas_width / canvas_height, 0.1, 1000 )
 	camera.rotation.set(-Math.PI / 4, Math.PI, 0)
 	camera.position.set(0, 1, -2);
 
 	var renderer = new THREE.WebGLRenderer()
-	renderer.setSize( window.innerWidth, window.innerHeight )
+	renderer.setSize( canvas_width, canvas_height )
 	renderer.gammaOutput = true;
 	renderer.gammaFactor = 2.2;
 	document.body.appendChild( renderer.domElement )

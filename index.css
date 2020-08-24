@@ -1,0 +1,14 @@
+#left {
+  float: left;
+  width: 200px;
+  margin-right: 20px;
+}
+
+#image1, #image2, #image3 {
+  width: 200px;
+  margin: 30px 5px 0;
+}
+
+canvas {
+  overflow: hidden;
+}
