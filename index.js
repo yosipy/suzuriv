@@ -1,6 +1,7 @@
 //import * as THREE from 'three.min.js';
 import * as THREE from 'https://unpkg.com/three@0.119.1/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.119.1/examples/jsm/loaders/GLTFLoader.js';
+import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
 
 /*async function oauth() {
   let res = await axios.get('https://suzuri.jp/api/v1/products', {
@@ -139,9 +140,18 @@ async function synthesis(scene) {
 window.addEventListener('DOMContentLoaded', init);
 function init() {
 	var scene = new THREE.Scene()
-	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
-	camera.rotation.set(0, Math.PI, 0)
-	camera.position.set(0, 1, -1);
+	var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 )
+	camera.rotation.set(-Math.PI / 4, Math.PI, 0)
+	camera.position.set(0, 1, -2);
+
+	var renderer = new THREE.WebGLRenderer()
+	renderer.setSize( window.innerWidth, window.innerHeight )
+	renderer.gammaOutput = true;
+	renderer.gammaFactor = 2.2;
+	document.body.appendChild( renderer.domElement )
+
+	const controls = new OrbitControls( camera, renderer.domElement )
+	controls.target = new THREE.Vector3(0, 1, 0)
 
 	// 平行光源
 	const light = new THREE.DirectionalLight(0xFFFFFF);
@@ -150,18 +160,12 @@ function init() {
 	// シーンに追加
 	scene.add(light);
 
-	//oauth()
 	synthesis(scene)
-
-	var renderer = new THREE.WebGLRenderer()
-	renderer.setSize( window.innerWidth, window.innerHeight )
-	renderer.gammaOutput = true;
-	renderer.gammaFactor = 2.2;
-	document.body.appendChild( renderer.domElement )
 
 	// 初回実行
 	tick();
 	function tick() {
+		controls.update()
 		renderer.render(scene, camera);
 		requestAnimationFrame(tick);
 	}
