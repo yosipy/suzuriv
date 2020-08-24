@@ -3,17 +3,6 @@ import * as THREE from 'https://unpkg.com/three@0.119.1/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.119.1/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
 
-// button
-document.getElementById("image1").onclick = () => {
-  alert("クリックされました")
-}
-document.getElementById("image2").onclick = () => {
-  alert("クリックされました")
-}
-document.getElementById("image3").onclick = () => {
-  alert("クリックされました")
-}
-
 
 function modelLoad(url) {
 	var loader = new GLTFLoader()
@@ -91,16 +80,20 @@ function blendColor(base_rgb, override_rgb, override_a){
 	return 255 + override + shadow 
 }
 
-async function synthesis(scene) {
-	const model = await modelLoad('model/glb/0_normal_p24180_m8_b103_materialchuu.glb')
+async function synthesis(scene, texture_name = '1591475524-2520x2992.png', loaded_model = null) {
+	let model
+	if (loaded_model == null) {
+		model = await modelLoad('model/glb/0_normal_p24180_m8_b103_materialchuu.glb')
+	} else {
+		model = loaded_model
+	}
 	const model_image = await imageLoad('model/gltf/0_normal_p24180_m8_b103_materialchuu_img7.png', 2048, 2048)
-	const suzuri_image = await imageLoad('1591475524-2520x2992.png', 165, Number(165*(349/315)))
+	const suzuri_image = await imageLoad(texture_name, 165, Number(165*(349/315)))
 
 	let left_top_x = 1200
 	let left_top_y = 1200
 	for (let s_x = 0; s_x < suzuri_image.width; ++s_x){
 		for (let s_y = 0; s_y < suzuri_image.height; ++s_y){
-			//
 			let m_x = left_top_x + s_x
 			let m_y = left_top_y + s_y
 			const m_index = (m_y * model_image.width + m_x) * 4
@@ -116,10 +109,10 @@ async function synthesis(scene) {
 	model.traverse(function(child){
 		if (child.name == 'Body (merged).baked_0'){
 			child.material.map.image = model_image
+			child.material.map.needsUpdate = true
 		}
 	})
-
-	console.log(model)
+	
 	scene.add(model)
 }
 
@@ -156,5 +149,22 @@ function init() {
 		controls.update()
 		renderer.render(scene, camera)
 		requestAnimationFrame(tick)
+	}
+
+	// button
+	document.getElementById("image1").onclick = () => {
+		let model = scene.getObjectByName('model')
+		scene.remove(model)
+		synthesis(scene, '1591475524-2520x2992.png', model)
+	}
+	document.getElementById("image2").onclick = () => {
+		let model = scene.getObjectByName('model')
+		scene.remove(model)
+		synthesis(scene, 'test2.png', model)
+	}
+	document.getElementById("image3").onclick = () => {
+		let model = scene.getObjectByName('model')
+		scene.remove(model)
+		synthesis(scene, 'test3.png', model)
 	}
 }
