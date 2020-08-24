@@ -3,17 +3,6 @@ import * as THREE from 'https://unpkg.com/three@0.119.1/build/three.module.js';
 import {GLTFLoader} from 'https://unpkg.com/three@0.119.1/examples/jsm/loaders/GLTFLoader.js';
 import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/controls/OrbitControls.js';
 
-/*async function oauth() {
-  let res = await axios.get('https://suzuri.jp/api/v1/products', {
-		headers: {
-			Authorization: 'Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-		}, 
-		params: {
-			userId: 'xxxxxx'
-		}
-	})
-	console.log(res)
-}*/
 
 function modelLoad(url) {
 	var loader = new GLTFLoader()
