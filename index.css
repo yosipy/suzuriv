@@ -12,3 +12,7 @@
 canvas {
   overflow: hidden;
 }
+
+#result {
+  margin: 20px;
+}

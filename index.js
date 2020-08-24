@@ -24,8 +24,10 @@ function modelLoad(url) {
 			},
 			// called while loading is progressing
 			function ( xhr ) {
-	
-				console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' )
+
+				const download_per = parseInt( xhr.loaded / xhr.total * 100 ) + '% loaded'
+				document.getElementById('result').innerHTML = String( download_per )
+				console.log( download_per )
 	
 			},
 			// called when loading has errors
@@ -118,14 +120,14 @@ async function synthesis(scene, texture_name = '1591475524-2520x2992.png', loade
 
 window.addEventListener('DOMContentLoaded', init)
 function init() {
-	let canvas_width = window.innerWidth - 300
-	let canvas_height = window.innerHeight
-	var scene = new THREE.Scene()
-	var camera = new THREE.PerspectiveCamera( 45, canvas_width / canvas_height, 0.1, 1000 )
+	const canvas_width = window.innerWidth - 300
+	const canvas_height = window.innerHeight
+	const scene = new THREE.Scene()
+	const camera = new THREE.PerspectiveCamera( 45, canvas_width / canvas_height, 0.1, 1000 )
 	camera.rotation.set(-Math.PI / 4, Math.PI, 0)
 	camera.position.set(0, 1, -2);
 
-	var renderer = new THREE.WebGLRenderer()
+	const renderer = new THREE.WebGLRenderer()
 	renderer.setSize( canvas_width, canvas_height )
 	renderer.gammaOutput = true;
 	renderer.gammaFactor = 2.2;
