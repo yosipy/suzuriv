@@ -5,7 +5,7 @@ import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/contro
 
 
 function modelLoad(url) {
-	var loader = new GLTFLoader()
+	const loader = new GLTFLoader()
 
 	// Optional: Provide a DRACOLoader instance to decode compressed mesh data
 	//var dracoLoader = new DRACOLoader();
@@ -46,7 +46,7 @@ function imageLoad(url, width=null, height=null) {
 		image_loader.load(
 			url,
 			function ( image ) {
-				var canvas = document.createElement( 'canvas' )
+				const canvas = document.createElement( 'canvas' )
 
 				let w, h
 				if (width != null && height != null) {
@@ -60,10 +60,10 @@ function imageLoad(url, width=null, height=null) {
 				canvas.width = width
 				canvas.height = height
 				
-				var context = canvas.getContext( '2d' )
+				const context = canvas.getContext( '2d' )
 				context.drawImage( image, 0, 0, w, h )
 
-				let src = context.getImageData(0, 0, w, h)
+				const src = context.getImageData(0, 0, w, h)
 				resolve(src)
 			},
 			// onProgress callback currently not supported
@@ -92,8 +92,8 @@ async function synthesis(scene, texture_name = '1591475524-2520x2992.png', loade
 	const model_image = await imageLoad('model/gltf/0_normal_p24180_m8_b103_materialchuu_img7.png', 2048, 2048)
 	const suzuri_image = await imageLoad(texture_name, 165, Number(165*(349/315)))
 
-	let left_top_x = 1200
-	let left_top_y = 1200
+	const left_top_x = 1200
+	const left_top_y = 1200
 	for (let s_x = 0; s_x < suzuri_image.width; ++s_x){
 		for (let s_y = 0; s_y < suzuri_image.height; ++s_y){
 			let m_x = left_top_x + s_x
