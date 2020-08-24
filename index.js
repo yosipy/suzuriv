@@ -16,8 +16,7 @@ import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/contro
 }*/
 
 function modelLoad(url) {
-	// Instantiate a loader
-	var loader = new GLTFLoader();
+	var loader = new GLTFLoader()
 
 	// Optional: Provide a DRACOLoader instance to decode compressed mesh data
 	//var dracoLoader = new DRACOLoader();
@@ -37,28 +36,26 @@ function modelLoad(url) {
 			// called while loading is progressing
 			function ( xhr ) {
 	
-				console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+				console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' )
 	
-			}/*,
+			},
 			// called when loading has errors
 			function ( error ) {
 	
-				console.log( 'An error happened' );
+				console.log( 'An error happened' )
 	
-			}*/
+			}
 		)
 	})
-	// Load a glTF resource
 }
 
 function imageLoad(url, width=null, height=null) {
-	const image_loader = new THREE.ImageLoader();
+	const image_loader = new THREE.ImageLoader()
 	return new Promise((resolve, reject) => {
 		image_loader.load(
 			url,
 			function ( image ) {
-				// use the image, e.g. draw part of it on a canvas
-				var canvas = document.createElement( 'canvas' );
+				var canvas = document.createElement( 'canvas' )
 
 				let w, h
 				if (width != null && height != null) {
@@ -72,28 +69,17 @@ function imageLoad(url, width=null, height=null) {
 				canvas.width = width
 				canvas.height = height
 				
-				var context = canvas.getContext( '2d' );
+				var context = canvas.getContext( '2d' )
 				context.drawImage( image, 0, 0, w, h )
 
 				let src = context.getImageData(0, 0, w, h)
-				//let dst = context.createImageData(2048, 2048)
-				//model.children[3].children[2].material.map.image = image
-				
-				console.log(src.data.length)
-				console.log(src.width)
-				console.log(src.height)
-
-				//context.putImageData(src, 0, 0)
-				console.log(src)
 				resolve(src)
 			},
-		
 			// onProgress callback currently not supported
 			undefined,
-		
 			// onError callback
 			function () {
-				console.error( 'An error happened.' );
+				console.error( 'An error happened.' )
 			}
 		)
 	})
@@ -137,7 +123,7 @@ async function synthesis(scene) {
 	scene.add(model)
 }
 
-window.addEventListener('DOMContentLoaded', init);
+window.addEventListener('DOMContentLoaded', init)
 function init() {
 	var scene = new THREE.Scene()
 	var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.1, 1000 )
@@ -154,11 +140,11 @@ function init() {
 	controls.target = new THREE.Vector3(0, 1, 0)
 
 	// 平行光源
-	const light = new THREE.DirectionalLight(0xFFFFFF);
-	light.intensity = 2; // 光の強さを倍に
-	light.position.set(1, 1, 1);
+	const light = new THREE.DirectionalLight(0xFFFFFF)
+	light.intensity = 2
+	light.position.set(1, 1, 1)
 	// シーンに追加
-	scene.add(light);
+	scene.add(light)
 
 	synthesis(scene)
 
@@ -166,7 +152,7 @@ function init() {
 	tick();
 	function tick() {
 		controls.update()
-		renderer.render(scene, camera);
-		requestAnimationFrame(tick);
+		renderer.render(scene, camera)
+		requestAnimationFrame(tick)
 	}
 }
