@@ -6,7 +6,7 @@ import {OrbitControls} from 'https://unpkg.com/three@0.119.1/examples/jsm/contro
 
 function modelLoad(url) {
 	const loader = new GLTFLoader()
-	THREE.Cache.enabled = true
+
 	// Optional: Provide a DRACOLoader instance to decode compressed mesh data
 	//var dracoLoader = new DRACOLoader();
 	//dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
@@ -25,7 +25,7 @@ function modelLoad(url) {
 			// called while loading is progressing
 			function ( xhr ) {
 
-				const download_per = ( xhr.loaded / xhr.total * 100 ) + '% loaded'
+				const download_per = parseInt( xhr.loaded / xhr.total * 100 ) + '% loaded'
 				document.getElementById('result').innerHTML = String( download_per )
 				console.log( download_per )
 	
